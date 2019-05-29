@@ -24,9 +24,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
     @Value("${welcome}")
     private String welcome;
+    
+    
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String ipaddress() throws Exception {
         return "Reply: " + welcome;
+    }
+    
+    @RequestMapping(value = "/value", method = RequestMethod.GET)
+    public String getValue() throws Exception {
+    	String bucketName=System.getenv("BUCKET_NAME");
+    	System.out.println("Bucket Name is: "+bucketName);
+        return "Value: " + bucketName;
     }
 }
